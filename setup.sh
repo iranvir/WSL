@@ -17,6 +17,7 @@ sudo apt update;
 
 ## Personal workspace setup
 cp ./.bashrc ~/.bashrc
+git config --global init.defaultBranch main
 git config --global user.name "Ranvir Singh"
 git config --global user.email "sranvir155@gmail.com"
 echo "echo \"$USER ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers" | sudo bash
