@@ -20,8 +20,6 @@ cp ./.bashrc ~/.bashrc
 git config --global init.defaultBranch main
 git config --global user.name "Ranvir Singh"
 git config --global user.email "sranvir155@gmail.com"
-echo "echo \"$USER ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers" | sudo bash
-python3 -m venv $HOME/.venv
 
 ### Adding SSH keys and SSH client config from hard drive
 umask 077
