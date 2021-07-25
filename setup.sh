@@ -21,7 +21,7 @@ fi
 
 if [ $ID = "alpine" ] ; then
     ## Alpine specific setup
-    sed -i -e 's/v[0-9]\.[0-9]*/edge/g' /etc/apk/repositories
+    sed -i -e 's/v[0-9]*\.[0-9]*/edge/g' /etc/apk/repositories
     sudo apk update -y
     sudo apk purge show-motd update-motd snapd openssh-client openssh-server cloud-init git -y
     ## Alpine specific setup ends here
