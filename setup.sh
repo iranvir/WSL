@@ -20,10 +20,11 @@ if [ $ID = "ubuntu" ] ; then
 fi
 
 if [ $ID = "alpine" ] ; then
-    ## Ubuntu specific setup
+    ## Alpine specific setup
+    sed -i -e 's/v[0-9]\.[0-9]*/edge/g' /etc/apk/repositories
     sudo apk update -y
     sudo apk purge show-motd update-motd snapd openssh-client openssh-server cloud-init git -y
-    ## Ubuntu specific setup ends here
+    ## Alpine specific setup ends here
 fi
 
 ## Personal workspace setup
