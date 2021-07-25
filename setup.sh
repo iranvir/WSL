@@ -1,19 +1,30 @@
 #!/bin/sh
-## Ubuntu specific setup
-sudo apt update -y
-sudo apt purge show-motd update-motd snapd openssh-client openssh-server cloud-init git -y
-sudo apt autoremove --purge -y
-sudo rm -rf /etc/cloud /var/lib/cloud
-sudo add-apt-repository ppa:git-core/ppa -y
+source /etc/os-release
 
-sudo apt upgrade -y
-sudo apt autoremove --purge -y
-sudo apt install curl wget rsync vim openssh-client git man-db -y
-sudo apt autoremove --purge -y
-sudo apt clean all
+if [ $ID = "ubuntu" ] ; then
+    ## Ubuntu specific setup
+    sudo apt update -y
+    sudo apt purge show-motd update-motd snapd openssh-client openssh-server cloud-init git -y
+    sudo apt autoremove --purge -y
+    sudo rm -rf /etc/cloud /var/lib/cloud
+    sudo add-apt-repository ppa:git-core/ppa -y
 
-sudo apt update;
-## Ubuntu specific setup ends here
+    sudo apt upgrade -y
+    sudo apt autoremove --purge -y
+    sudo apt install curl wget rsync vim openssh-client git man-db -y
+    sudo apt autoremove --purge -y
+    sudo apt clean all
+
+    sudo apt update;
+    ## Ubuntu specific setup ends here
+fi
+
+if [ $ID = "alpine" ] ; then
+    ## Ubuntu specific setup
+    sudo apk update -y
+    sudo apk purge show-motd update-motd snapd openssh-client openssh-server cloud-init git -y
+    ## Ubuntu specific setup ends here
+fi
 
 ## Personal workspace setup
 cp ./.bashrc ~/.bashrc
