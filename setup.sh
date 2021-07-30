@@ -1,8 +1,7 @@
 #!/bin/sh
-source /etc/os-release
+. /etc/os-release
 
 if [ $ID = "ubuntu" ] ; then
-    ## Ubuntu specific setup
     sudo apt update -y
     sudo apt purge show-motd update-motd snapd openssh-client openssh-server cloud-init git -y
     sudo apt autoremove --purge -y
@@ -16,15 +15,12 @@ if [ $ID = "ubuntu" ] ; then
     sudo apt clean all
 
     sudo apt update;
-    ## Ubuntu specific setup ends here
 fi
 
 if [ $ID = "alpine" ] ; then
-    ## Alpine specific setup
     sed -i -e 's/v[0-9]*\.[0-9]*/edge/g' /etc/apk/repositories
-    sudo apk update -y
-    sudo apk purge show-motd update-motd snapd openssh-client openssh-server cloud-init git -y
-    ## Alpine specific setup ends here
+    apk -U upgrade
+    apk add curl git sudo git
 fi
 
 ## Personal workspace setup
@@ -41,9 +37,12 @@ if [ ! -d ~/.ssh ] ; then
   chmod 400 ~/.ssh/id*
 fi
 
-sudo sed -i 's/HashKnownHosts yes/HashKnownHosts no/' /etc/ssh/ssh_config
-sudo sed -i 's/#   StrictHostKeyChecking ask/\ \ \ \ StrictHostKeyChecking no/' /etc/ssh/ssh_config
-### End Of SSH client Setup
+## Adding VS Code and Explorer to PATH
+sudo ln -s /mnt/c/Users/r/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code /usr/local/bin/code
+sudo ln -s /mnt/c/Windows/explorer.exe /usr/local/bin/explorer.exe
+sudo cat ./wsl.conf > /etc/wsl.conf
+sudo rm -r /etc/resolv.conf /run/resolvconf/
+sudo cat ./resolv.conf > /etc/resolv.conf
 
 sudo fstrim /
 exit 0
