@@ -10,21 +10,22 @@ if [ $ID = "ubuntu" ] ; then
 
     sudo apt upgrade -y
     sudo apt autoremove --purge -y
-    sudo apt install curl wget rsync vim openssh-client git man-db -y
+    sudo apt install curl wget rsync vim unzip openssh-client git man-db -y
     sudo apt autoremove --purge -y
     sudo apt clean all
 
     sudo apt update;
+    cp ./.bashrc ~/.bashrc
 fi
 
 if [ $ID = "alpine" ] ; then
     sed -i -e 's/v[0-9]*\.[0-9]*/edge/g' /etc/apk/repositories
     apk -U upgrade
-    apk add curl git sudo git
+    apk add curl git sudo git unzip
+    cp ./.bashrc ~/.profile
 fi
 
 ## Personal workspace setup
-cp ./.bashrc ~/.bashrc
 git config --global init.defaultBranch main
 git config --global user.name "Ranvir Singh"
 git config --global user.email "sranvir155@gmail.com"
@@ -44,5 +45,6 @@ sudo cat ./wsl.conf > /etc/wsl.conf
 sudo rm -r /etc/resolv.conf /run/resolvconf/
 sudo cat ./resolv.conf > /etc/resolv.conf
 
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "$HOME/awscliv2.zip"
 sudo fstrim /
 exit 0
