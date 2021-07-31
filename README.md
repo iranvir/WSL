@@ -6,8 +6,8 @@
 
 ## Powershell commands
 To create a new Distro, named `Ubuntu`
-`wsl --import Ubuntu $HOME\Desktop\Ubuntu Ubuntu.tar.gz`
+`wsl --import Ubuntu $HOME\Desktop\WSL\Ubuntu Ubuntu.tar.gz`
 
 To run the `setup.sh` script.
 
-`wsl -d Ubuntu exec env PWD='/mnt/c/Users/r/Desktop/WSL' ./setup.sh`
+`wsl -d Ubuntu exec env PWD='/mnt/c/Users/r/WSL/Desktop/WSL' ./setup.sh`
