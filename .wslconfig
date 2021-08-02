@@ -1,4 +1,5 @@
 [wsl2]
 memory=16GB
 processors=6
+swap=0
 kernel=C:\\Users\\r\\kernel
